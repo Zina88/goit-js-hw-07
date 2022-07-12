@@ -14,7 +14,7 @@ function createGalleryCard(images) {
     .map(({ preview, original, description }) => {
       return `
       <div class="gallery__item">
-        <a class="gallery__link" href="large-image.jpg">
+        <a class="gallery__link" href="${original}">
           <img
             class="gallery__image"
             src=${preview}
@@ -30,12 +30,12 @@ function createGalleryCard(images) {
 
 function onGalleryCardClick(event) {
   event.preventDefault();
-  const isSrcPicture = event.target.dataset.source;
-  const isAltPicture = event.target.alt;
-
   if (!event.target.classList.contains('gallery__image')) {
     return;
   }
+
+  const isSrcPicture = event.target.dataset.source;
+  const isAltPicture = event.target.alt;
 
   const instance = basicLightbox.create(`
   <img src="${isSrcPicture}" alt="${isAltPicture}" width="800"    height="600">
@@ -43,7 +43,7 @@ function onGalleryCardClick(event) {
 
   instance.show();
 
-  addEventListener('keydown', onTargetKeydown);
+  window.addEventListener('keydown', onTargetKeydown);
 
   function onTargetKeydown(event) {
     const ESC_KEY_CODE = 'Escape';
@@ -51,6 +51,7 @@ function onGalleryCardClick(event) {
 
     if (isEscKey) {
       instance.close();
+      document.removeEventListener(onTargetKeydown);
     }
   }
 }

@@ -2,9 +2,9 @@ import { galleryItems } from './gallery-items.js';
 // Change code below this line
 console.log(galleryItems);
 
-const GalleryContainer = document.querySelector('.gallery');
+const galleryContainer = document.querySelector('.gallery');
 const galleryMarkup = createGalleryCard(galleryItems);
-GalleryContainer.insertAdjacentHTML('beforeend', galleryMarkup);
+galleryContainer.insertAdjacentHTML('beforeend', galleryMarkup);
 
 function createGalleryCard(images) {
   return images
@@ -21,10 +21,11 @@ function createGalleryCard(images) {
     .join('');
 }
 
-const lightbox = new SimpleLightbox('.gallery a', {
+new SimpleLightbox('.gallery a', {
   /* options */
   captions: true,
   captionsData: 'alt',
   captionDelay: 250,
   captionPosition: 'bottom',
+  captionSelector: 'img',
 });
