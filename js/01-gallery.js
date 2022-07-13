@@ -51,7 +51,7 @@ function onGalleryCardClick(event) {
 
     if (isEscKey) {
       instance.close();
-      document.removeEventListener(onTargetKeydown);
+      window.removeEventListener('keydown', onTargetKeydown);
     }
   }
 }
